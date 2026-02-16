@@ -1,0 +1,31 @@
+{
+  "tasks": [
+    {
+      "title": "Learn Observables",
+      "description": "Very tricky concept that needs lots of attention and time to understand.. Very tricky concept that needs lots of attention and time to understand..",
+      "priority": "high",
+      "dueDate": "2026-02-16",
+      "createdAt": "2026-02-16T16:10:19.624Z",
+      "completed": false,
+      "id": 1
+    },
+    {
+      "title": "Angular Change Detection",
+      "description": "Crucial piece that ties everything togthether and makes overall understanding of the language better.",
+      "priority": "high",
+      "dueDate": "2026-02-16",
+      "createdAt": "2026-02-16T16:13:39.187Z",
+      "completed": false,
+      "id": 2
+    },
+    {
+      "title": "Food shopping",
+      "description": "Remember to buy plantain, avocado and unsweetedned yoghurt",
+      "priority": "medium",
+      "dueDate": "2026-02-16",
+      "createdAt": "2026-02-16T16:16:13.490Z",
+      "completed": false,
+      "id": 3
+    }
+  ]
+}

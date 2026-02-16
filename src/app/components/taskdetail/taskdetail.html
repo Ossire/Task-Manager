@@ -1,0 +1,51 @@
+@if (isError) {
+<app-errorpage [errorString]="errorMessage" />
+}
+
+@else if (isLoading) {
+<app-loadingcomponent />
+}
+
+@else if (task$ | async; as task) {
+
+<div class="details-container">
+
+    <div class="details-header">
+        <a routerLink="/tasklist" class="back-link">
+            <button class="back-btn">
+                <span class="arrow">←</span> Back to List
+            </button>
+        </a>
+
+        <span class="priority-badge" [class]="task.priority">
+            {{ task.priority }} Priority
+        </span>
+    </div>
+
+    <h1 class="task-title">{{ task?.title }}</h1>
+
+    <div class="meta-info">
+        <div class="meta-item">
+            <span class="icon">📅</span>
+            <span>Created: {{ task.createdAt | date:'mediumDate' }}</span>
+        </div>
+        <div class="meta-item">
+            <span class="icon">⏰</span>
+            <span>Due: {{ task.dueDate | date:'mediumDate' }}</span>
+        </div>
+    </div>
+
+    <div class="details-body">
+        <p>{{ task.description }}</p>
+    </div>
+
+    <div class="details-footer">
+        <span class="status-label">Current Status:</span>
+        <span class="status-value" [class.completed]="task.completed">
+            {{ task.completed ? 'Completed' : 'Pending' }}
+        </span>
+    </div>
+
+</div>
+
+}

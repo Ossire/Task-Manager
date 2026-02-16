@@ -1,0 +1,63 @@
+@if (isError) {
+<app-errorpage [errorString]="errMessage" />
+}
+
+@else if (isLoading) {
+<app-loadingcomponent />
+}
+
+@else if (tassk$ | async; as tasks) {
+<div class="container">
+
+    <div class="add-task-wrapper">
+        <app-add-new-task />
+    </div>
+
+    @if (tasks.length > 0) {
+
+    <div class="task-grid">
+        @for (task of tasks; track task.id) {
+        <div class="task-card" [appTaskHighlighter]="task.completed">
+
+            <div class="card-header">
+                <span class="priority-badge" [class]="task.priority">
+                    {{ task.priority }}
+                </span>
+            </div>
+
+            <div class="checkbox-wrapper">
+                <input type="checkbox" [checked]="task.completed" (change)="toggleCompletion(task)"
+                    id="check-{{task.id}}" />
+                <label for="check-{{task.id}}">Mark Complete</label>
+            </div>
+
+            <h3 class="task-title">{{ task.title }}</h3>
+            <p class="task-desc">{{ task.description }}</p>
+
+            <div class="card-footer">
+                <span class="date">Due: {{ task.dueDate | date:'mediumDate' }}</span>
+
+                <div class="actions">
+                    <a [routerLink]="['/tasklist', task.id]">
+                        <button class="btn-details">Task details</button>
+                    </a>
+                    <button class="btn-delete" (click)="deleteTask(task)">Delete</button>
+                </div>
+            </div>
+
+        </div>
+        }
+    </div>
+
+    } @else {
+
+    <div class="empty-state">
+        <span class="empty-icon">📝</span>
+        <h3>No tasks found</h3>
+        <p>You have cleared your list! Add a new task above.</p>
+    </div>
+
+    }
+
+</div>
+}

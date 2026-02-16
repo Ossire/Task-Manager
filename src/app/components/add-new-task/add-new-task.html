@@ -1,0 +1,52 @@
+@if (successMessage) {
+<div class="toast-notification">
+    <span class="icon">✅</span>
+    <span>Task created successfully!</span>
+</div>
+}
+
+<div class="form-card">
+    <div class="form-header">
+        <h2>Create New Task</h2>
+        <p class="subtitle">What needs to be done?</p>
+    </div>
+
+    <form #taskForm="ngForm" (ngSubmit)="addTask()">
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" [(ngModel)]="newTask.title" placeholder="e.g. Grocery shopping"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <textarea id="desc" name="desc" [(ngModel)]="newTask.description" placeholder="Add details..."></textarea>
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <div class="select-wrapper">
+                    <select name="priority" [(ngModel)]="newTask.priority" required>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dueDate">Due Date</label>
+                <input type="date" id="dueDate" name="dueDate" [(ngModel)]="newTask.dueDate" required>
+            </div>
+
+        </div>
+
+        <button type="submit" [disabled]="taskForm.invalid || isSubmitting" class="btn-submit">
+            {{ isSubmitting ? 'Adding Task...' : 'Create Task' }}
+        </button>
+
+    </form>
+</div>
